@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.hilt_java.Models.Fav;
 import com.example.hilt_java.Models.card;
 
 import java.util.List;
@@ -16,13 +17,13 @@ import io.reactivex.Single;
 public interface Doa {
 
     @Insert
-    public void saveData(card c);
+    public void saveData(Fav f);
 
-    @Query("Delete from card where name = :name")
-    public void DeleteData(String name);
+    @Query("Delete from Fav where id = :id")
+    public void DeleteData(int id);
 
-    @Query("Select * from card")
-    public LiveData<List<card>> getCard();
+    @Query("Select * from Fav")
+    public LiveData<List<Fav>> getFav();
 
 
 }

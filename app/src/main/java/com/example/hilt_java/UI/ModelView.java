@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.hilt_java.Models.Fav;
 import com.example.hilt_java.Models.card;
 import com.example.hilt_java.Retrofit.Repository;
 
@@ -19,8 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 public class ModelView extends ViewModel {
     private Repository repository;
 
-    private LiveData<List<card>> FavList = null;
-    public LiveData<List<card>> getFavList() { return FavList; }
+    private LiveData<List<Fav>> FavList = null;
+    public LiveData<List<Fav>> getFavList() { return FavList; }
 
     private MutableLiveData<List<card>> cardMutableLiveData = new MutableLiveData<List<card>>();
     public LiveData<List<card>> getCardMutableLiveData() {
@@ -43,7 +44,7 @@ public class ModelView extends ViewModel {
                         Throwable::printStackTrace);
     }
 
-    public void getCard(){ FavList = repository.getCard(); }
-    public void SaveData( card card){ repository.saveData(card); }
-    public void DeleteData(String name){repository.DeleteData(name);}
+    public void getFav(){ FavList = repository.getFav(); }
+    public void SaveData( Fav f){ repository.saveData(f); }
+    public void DeleteData(int id){repository.DeleteData(id);}
 }

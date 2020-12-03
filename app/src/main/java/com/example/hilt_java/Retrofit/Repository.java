@@ -2,6 +2,7 @@ package com.example.hilt_java.Retrofit;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.hilt_java.Models.Fav;
 import com.example.hilt_java.Models.card;
 import com.example.hilt_java.Models.data;
 import com.example.hilt_java.Presistence.Doa;
@@ -28,7 +29,7 @@ public class Repository {
     }
 
 
-    public void saveData(card c){ doa.saveData(c);}
-    public void DeleteData(String name){doa.DeleteData(name);}
-    public LiveData<List<card>> getCard(){return doa.getCard();}
+    public void saveData(Fav f){ doa.saveData(f);}
+    public void DeleteData(int id){doa.DeleteData(id);}
+    public LiveData<List<Fav>> getFav(){return doa.getFav();}
 }

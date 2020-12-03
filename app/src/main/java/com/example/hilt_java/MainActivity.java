@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hilt_java.Adapter.cardAdapter;
+import com.example.hilt_java.Models.Fav;
+import com.example.hilt_java.Models.card;
 import com.example.hilt_java.UI.ModelView;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public ModelView modelView;
     public RecyclerView  RecyclerViewCard;
     private cardAdapter cardAdapter;
+    public Fav fav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                modelView.SaveData(cardAdapter.getCardList(viewHolder.getAdapterPosition()));
+                card c = cardAdapter.getCardList(viewHolder.getAdapterPosition());
+                fav = new Fav(c);
+                modelView.SaveData(fav);
                 cardAdapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Added To Favorites", Toast.LENGTH_SHORT).show();
             }

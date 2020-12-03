@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hilt_java.Adapter.FavAdapter;
 import com.example.hilt_java.Adapter.cardAdapter;
 import com.example.hilt_java.Models.card;
 import com.example.hilt_java.UI.ModelView;
@@ -28,26 +30,33 @@ public class FavActivity extends AppCompatActivity {
 
     public ModelView modelView;
     public RecyclerView RecyclerViewCard;
-    private com.example.hilt_java.Adapter.cardAdapter cardAdapter;
+    private FavAdapter favAdapter;
+    private TextView textView;
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
         RecyclerViewCard = findViewById(R.id.RecyclerViewFav);
-        cardAdapter = new cardAdapter(getApplicationContext());
+        textView = findViewById(R.id.textView5);
+        favAdapter = new FavAdapter(getApplicationContext());
         RecyclerViewCard.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewCard.setAdapter(cardAdapter);
+        RecyclerViewCard.setAdapter(favAdapter);
         Swipe();
 
         modelView = new ViewModelProvider(this).get(ModelView.class);
-        modelView.getCard();
-        modelView.getFavList().observe(this,cards -> {
-            if (cards==null)
+        modelView.getFav();
+        modelView.getFavList().observe(this,favs -> {
+            if (favs.size() == 0) {
                 findViewById(R.id.nodatafound).setVisibility(View.VISIBLE);
-            else
+                textView.setText("Your Deck is Empty");
+                favAdapter.notifyDataSetChanged();
+            }
+            else {
                 findViewById(R.id.nodatafound).setVisibility(View.GONE);
-                cardAdapter.setList(cards);
+                textView.setText(favs.size()+" Cards in Your Deck");
+                favAdapter.setList(favs);
+            }
         });
         findViewById(R.id.homeButton).setOnClickListener(v -> super.onBackPressed());
     }
@@ -62,8 +71,8 @@ public class FavActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                modelView.DeleteData(cardAdapter.getCardList(viewHolder.getAdapterPosition()).getName());
-                cardAdapter.notifyDataSetChanged();
+                modelView.DeleteData(favAdapter.getFavList(viewHolder.getAdapterPosition()).getId());
+                favAdapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Deleted from Favorites", Toast.LENGTH_SHORT).show();
             }
         };

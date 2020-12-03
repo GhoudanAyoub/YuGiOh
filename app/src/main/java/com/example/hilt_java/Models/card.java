@@ -1,15 +1,15 @@
 package com.example.hilt_java.Models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 
-@Entity(tableName = "card")
+
 public class card {
-
-    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String type;
@@ -19,42 +19,41 @@ public class card {
     private int level;
     private String race;
     private String attribute;
-
-    /*
-    @SerializedName("card_sets")
-    private card_sets card_sets;
     @SerializedName("card_images")
-    private card_images card_images;
+    private List<cardImage> cardImageList;
+    @SerializedName("card_sets")
+    private List<cardSet> cardSetList;
     @SerializedName("card_prices")
-    private card_prices card_prices;
-*/
+    private List<cardPrice> cardPriceList;
+
+
     public card() {
     }
-/*
-    public card_prices getCard_prices() {
-        return card_prices;
+
+    public List<cardImage> getCardImageList() {
+        return cardImageList;
     }
 
-    public void setCard_prices(card_prices card_prices) {
-        this.card_prices = card_prices;
+    public void setCardImageList(List<cardImage> cardImageList) {
+        this.cardImageList = cardImageList;
     }
 
-    public card_images getCard_images() {
-        return card_images;
+    public List<cardSet> getCardSetList() {
+        return cardSetList;
     }
 
-    public void setCard_images(card_images card_images) {
-        this.card_images = card_images;
+    public void setCardSetList(List<cardSet> cardSetList) {
+        this.cardSetList = cardSetList;
     }
 
-    public card_sets getCard_sets() {
-        return card_sets;
+    public List<cardPrice> getCardPriceList() {
+        return cardPriceList;
     }
 
-    public void setCard_sets(card_sets card_sets) {
-        this.card_sets = card_sets;
+    public void setCardPriceList(List<cardPrice> cardPriceList) {
+        this.cardPriceList = cardPriceList;
     }
-*/
+
     public int getId() {
         return id;
     }
