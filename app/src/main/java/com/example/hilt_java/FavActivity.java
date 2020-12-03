@@ -1,7 +1,9 @@
 package com.example.hilt_java;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,33 +14,44 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hilt_java.Adapter.cardAdapter;
+import com.example.hilt_java.Models.card;
 import com.example.hilt_java.UI.ModelView;
 
+import java.util.ArrayList;
+
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class FavActivity extends AppCompatActivity {
 
     public ModelView modelView;
-    public RecyclerView  RecyclerViewCard;
-    private cardAdapter cardAdapter;
+    public RecyclerView RecyclerViewCard;
+    private com.example.hilt_java.Adapter.cardAdapter cardAdapter;
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        RecyclerViewCard = findViewById(R.id.RecyclerViewCard);
+        setContentView(R.layout.activity_fav);
+        RecyclerViewCard = findViewById(R.id.RecyclerViewFav);
         cardAdapter = new cardAdapter(getApplicationContext());
         RecyclerViewCard.setLayoutManager(new LinearLayoutManager(this));
         RecyclerViewCard.setAdapter(cardAdapter);
-        cardAdapter.notifyDataSetChanged();
         Swipe();
 
         modelView = new ViewModelProvider(this).get(ModelView.class);
-        modelView.getData();
-        modelView.getCardMutableLiveData().observe(this, cards -> cardAdapter.setList(cards));
-
-        findViewById(R.id.favButton).setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),FavActivity.class)));
+        modelView.getCard();
+        modelView.getFavList().observe(this,cards -> {
+            if (cards==null)
+                findViewById(R.id.nodatafound).setVisibility(View.VISIBLE);
+            else
+                findViewById(R.id.nodatafound).setVisibility(View.GONE);
+                cardAdapter.setList(cards);
+        });
+        findViewById(R.id.homeButton).setOnClickListener(v -> super.onBackPressed());
     }
+
 
     private void Swipe(){
         ItemTouchHelper.SimpleCallback touchHelper = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
@@ -49,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                modelView.SaveData(cardAdapter.getCardList(viewHolder.getAdapterPosition()));
+                modelView.DeleteData(cardAdapter.getCardList(viewHolder.getAdapterPosition()).getName());
                 cardAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Added To Favorites", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Deleted from Favorites", Toast.LENGTH_SHORT).show();
             }
         };
         new ItemTouchHelper(touchHelper).attachToRecyclerView(RecyclerViewCard);

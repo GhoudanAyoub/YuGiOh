@@ -1,37 +1,21 @@
 package com.example.hilt_java.Models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class card_images {
-    private int id;
-    private String image_url;
-    private String image_url_small;
 
-    public card_images(int id, String image_url, String image_url_small) {
-        this.id = id;
-        this.image_url = image_url;
-        this.image_url_small = image_url_small;
+    @SerializedName("card_images")
+    private List<cardImage> cardImageList = null;
+
+    public card_images() { }
+
+    public List<cardImage> getCardImageList() {
+        return cardImageList;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public String getImage_url_small() {
-        return image_url_small;
-    }
-
-    public void setImage_url_small(String image_url_small) {
-        this.image_url_small = image_url_small;
+    public void setCardImageList(List<cardImage> cardImageList) {
+        this.cardImageList = cardImageList;
     }
 }

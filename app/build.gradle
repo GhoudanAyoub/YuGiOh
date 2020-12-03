@@ -15,6 +15,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -89,5 +90,8 @@ dependencies {
 
 //DataBinding
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.6'
 
 }

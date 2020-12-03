@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FavActivity">
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerViewCard"
-        android:layout_width="0dp"
+        android:id="@+id/RecyclerViewFav"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -20,11 +21,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <ImageView
+        android:id="@+id/nodatafound"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/nodata_found"
+        tools:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="68dp"
-        android:background="#CDC9C9"
+        android:background="#000000"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,47 +54,19 @@
             android:gravity="center|right"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Search"
-                android:inputType="textPersonName" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center|right|center_horizontal"
                 android:clickable="true"
+                android:contentDescription="TODO"
+                android:tint="#000000"
                 app:backgroundTint="#FFFFFF"
                 app:fabSize="mini"
-                app:rippleColor="#000000"
-                app:srcCompat="@drawable/ic_baseline_search_24" />
-
+                app:rippleColor="#FFFFFF"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
         </LinearLayout>
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/favButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|right|center_horizontal"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        android:tint="#000000"
-        app:backgroundTint="#FFFFFF"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/RecyclerViewCard"
-        app:layout_constraintEnd_toEndOf="@+id/RecyclerViewCard"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@drawable/ic_sharp_assignment_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

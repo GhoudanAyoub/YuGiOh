@@ -1,18 +1,20 @@
 package com.example.hilt_java.Models;
 
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class data {
-    private ArrayList<card> cards;
+    @SerializedName("data")
+    private List<card> cards = null;
 
-    public data() {
-    }
+    public data() { }
 
-    public ArrayList<card> getCards() {
+    public List<card>   getCards() {
         return cards;
     }
 
-    public void setCards(ArrayList<card> cards) {
+    public void setCards(List<card> cards) {
         this.cards = cards;
     }
 }
