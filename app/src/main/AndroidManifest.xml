@@ -12,6 +12,7 @@
         android:roundIcon="@drawable/yugioh"
         android:supportsRtl="true"
         android:theme="@style/Theme.HILT_JAVA">
+        <activity android:name=".fullinfo"></activity>
         <activity android:name=".FavActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -13,7 +13,7 @@ public class Fav {
     public Fav() {
     }
 
-    public Fav( card card) {
+    public Fav(card card) {
         this.card = card;
     }
 

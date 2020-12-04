@@ -13,19 +13,22 @@ import com.example.hilt_java.Retrofit.Repository;
 
 import java.util.List;
 
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ModelView extends ViewModel {
-    private Repository repository;
+    private final Repository repository;
 
     private LiveData<List<Fav>> FavList = null;
-    public LiveData<List<Fav>> getFavList() { return FavList; }
+
+    public LiveData<List<Fav>> getFavList() {
+        return FavList;
+    }
 
     private MutableLiveData<List<card>> cardMutableLiveData = new MutableLiveData<List<card>>();
+
     public LiveData<List<card>> getCardMutableLiveData() {
-        if (cardMutableLiveData ==null)
+        if (cardMutableLiveData == null)
             cardMutableLiveData = new MutableLiveData<>();
         return cardMutableLiveData;
     }
@@ -36,7 +39,7 @@ public class ModelView extends ViewModel {
     }
 
     @SuppressLint("CheckResult")
-    public void getData(){
+    public void getData() {
         repository.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +47,15 @@ public class ModelView extends ViewModel {
                         Throwable::printStackTrace);
     }
 
-    public void getFav(){ FavList = repository.getFav(); }
-    public void SaveData( Fav f){ repository.saveData(f); }
-    public void DeleteData(int id){repository.DeleteData(id);}
+    public void getFav() {
+        FavList = repository.getFav();
+    }
+
+    public void SaveData(Fav f) {
+        repository.saveData(f);
+    }
+
+    public void DeleteData(int id) {
+        repository.DeleteData(id);
+    }
 }

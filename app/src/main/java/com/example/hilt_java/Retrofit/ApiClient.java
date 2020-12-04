@@ -16,8 +16,8 @@ public class ApiClient {
 
     @Provides
     @Singleton
-    public static Api ApiClient(){
-        String BASE_URL ="https://db.ygoprodeck.com/api/v7/";
+    public static Api ApiClient() {
+        String BASE_URL = "https://db.ygoprodeck.com/api/v7/";
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

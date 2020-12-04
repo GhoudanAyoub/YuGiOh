@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +25,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="68dp"
-        android:background="#CDC9C9"
+        android:background="#000000"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,33 +38,29 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:gravity="center|right"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="147dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:ems="10"
+                android:fontFamily="monospace"
                 android:gravity="center"
-                android:hint="Search"
-                android:inputType="textPersonName" />
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Search"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <SearchView
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:clickable="true"
-                app:backgroundTint="#FFFFFF"
-                app:fabSize="mini"
-                app:rippleColor="#000000"
-                app:srcCompat="@drawable/ic_baseline_search_24" />
+                android:background="#FFFFFF" />
 
         </LinearLayout>
     </LinearLayout>

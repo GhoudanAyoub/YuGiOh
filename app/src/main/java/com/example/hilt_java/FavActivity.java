@@ -1,7 +1,6 @@
 package com.example.hilt_java;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,15 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hilt_java.Adapter.FavAdapter;
-import com.example.hilt_java.Adapter.cardAdapter;
-import com.example.hilt_java.Models.card;
 import com.example.hilt_java.UI.ModelView;
 
-import java.util.ArrayList;
-
 import dagger.hilt.android.AndroidEntryPoint;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class FavActivity extends AppCompatActivity {
@@ -32,6 +25,7 @@ public class FavActivity extends AppCompatActivity {
     public RecyclerView RecyclerViewCard;
     private FavAdapter favAdapter;
     private TextView textView;
+
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +40,14 @@ public class FavActivity extends AppCompatActivity {
 
         modelView = new ViewModelProvider(this).get(ModelView.class);
         modelView.getFav();
-        modelView.getFavList().observe(this,favs -> {
+        modelView.getFavList().observe(this, favs -> {
             if (favs.size() == 0) {
                 findViewById(R.id.nodatafound).setVisibility(View.VISIBLE);
                 textView.setText("Your Deck is Empty");
                 favAdapter.notifyDataSetChanged();
-            }
-            else {
+            } else {
                 findViewById(R.id.nodatafound).setVisibility(View.GONE);
-                textView.setText(favs.size()+" Cards in Your Deck");
+                textView.setText(favs.size() + " Cards in Your Deck");
                 favAdapter.setList(favs);
             }
         });
@@ -62,8 +55,8 @@ public class FavActivity extends AppCompatActivity {
     }
 
 
-    private void Swipe(){
-        ItemTouchHelper.SimpleCallback touchHelper = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+    private void Swipe() {
+        ItemTouchHelper.SimpleCallback touchHelper = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;

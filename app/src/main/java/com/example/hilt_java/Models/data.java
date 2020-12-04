@@ -8,9 +8,10 @@ public class data {
     @SerializedName("data")
     private List<card> cards = null;
 
-    public data() { }
+    public data() {
+    }
 
-    public List<card>   getCards() {
+    public List<card> getCards() {
         return cards;
     }
 

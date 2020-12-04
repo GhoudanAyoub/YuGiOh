@@ -8,12 +8,12 @@ import com.google.gson.Gson;
 public class Converters {
 
     @TypeConverter
-    public String FromCardToString(card card){
+    public String FromCardToString(card card) {
         return new Gson().toJson(card);
     }
 
     @TypeConverter
-    public card FromStringTocard(String json){
+    public card FromStringTocard(String json) {
         return new Gson().fromJson(json, card.class);
     }
 
