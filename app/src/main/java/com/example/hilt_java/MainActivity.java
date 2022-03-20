@@ -3,6 +3,7 @@ package com.example.hilt_java;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         Search();
         modelView = new ViewModelProvider(this).get(ModelView.class);
         modelView.getData();
-        modelView.getCardMutableLiveData().observe(this, cards -> cardAdapter.setList(cards));
+        modelView.getCardMutableLiveData().observe(this, cards -> {
+            findViewById(R.id.ValideAnim).setVisibility(View.GONE);
+            cardAdapter.setList(cards);});
 
         findViewById(R.id.favButton).setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), FavActivity.class)));
     }
