@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerView RecyclerViewCard;
     private cardAdapter cardAdapter;
     public Fav fav;
+
     private SearchView search;
 
     @Override
